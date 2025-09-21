@@ -1,11 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/2300033093/home-tutor-finder.git'
-            }
-        }
         stage('Build Backend') {
             steps {
                 dir('backend') {
