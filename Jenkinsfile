@@ -4,21 +4,17 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'mvn clean package -DskipTests'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
             }
         }
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
-            }
-        }
-        stage('Docker Build & Run') {
-            steps {
-                sh 'docker-compose -f infra/docker-compose.yml up -d --build'
             }
         }
     }
