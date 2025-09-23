@@ -1,19 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import StudentDashboard from "./pages/StudentDashboard";
-import TutorDashboard from "./pages/TutorDashboard";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
+import StudentDashboard from "./pages/StudentDashboard.jsx";
+import TutorDashboard from "./pages/TutorDashboard.jsx";
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/student" element={<StudentDashboard />} />
-        <Route path="/tutor" element={<TutorDashboard />} />
+        <Route path="/" element={<Login setUser={setUser} />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/signup" element={<Signup setUser={setUser} />} />
+        <Route path="/student" element={<StudentDashboard user={user} setUser={setUser} />} />
+        <Route path="/tutor" element={<TutorDashboard user={user} setUser={setUser} />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
